@@ -12,8 +12,8 @@ const sendEmailtoAdmin = catchApiErrors(async (req, res) => {
 	const transporter = nodemailer.createTransport({
 		service: "gmail",
 		auth: {
-			user: "nomanfortesting@gmail.com",
-			pass: "gurcpgonoliiczad",
+			user: process.env.HOST_EMAIL,
+			pass: process.env.HOST_PASSWORD,
 		},
 		tls: {
 			// do not fail on invalid certs
@@ -22,7 +22,7 @@ const sendEmailtoAdmin = catchApiErrors(async (req, res) => {
 	});
 
 	const mailOptions = {
-		from: "nomanfortesting@gmail.com",
+		from: process.env.HOST_EMAIL,
 		to: "tm8683248@gmail.com",
 		subject: "Email Sent from Node Mailer for Testing",
 		text: `User Name  : ${query.Name}
